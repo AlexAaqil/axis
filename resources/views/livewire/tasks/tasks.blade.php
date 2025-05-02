@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         @empty
-                            <p>Nothing tasks added yet</p>
+                            <p>No tasks added yet</p>
                         @endforelse
 
                         <div class="mt-2 mb-6 p-6">
@@ -94,7 +94,7 @@
                 </div>
 
                 <div class="form col-span-4">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 sticky top-6"> <!-- Added sticky positioning -->
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 sticky top-6">
                         <x-livewire-notifications />
 
                         <form wire:submit.prevent="saveTask">
