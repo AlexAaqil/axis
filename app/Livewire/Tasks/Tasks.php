@@ -54,7 +54,7 @@ class Tasks extends Component
 
     public function render()
     {
-        $tasks = auth()->user()->tasks()->latest()->paginate(5);
+        $tasks = auth()->user()->tasks()->latest()->paginate(50);
         $tasks_by_status = TaskStatus::userGroupedStatuses();
 
         return view('livewire.tasks.tasks', compact('tasks', 'tasks_by_status'))
