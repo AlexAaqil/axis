@@ -30,8 +30,27 @@
                         @forelse($tasks as $task)
                             <div class="task p-6 mb-3 bg-white sm:rounded-lg">
                                 <div class="header flex justify-between gap-4 mb-2">
-                                    <p class="title font-bold">{{ $task->title }}</p>
-                                    <p class="date">{{ $task->created_at->diffForHumans() }}</p>
+                                    <div class="flex items-center gap-2">
+                                        <p class="title font-bold">{{ $task->title }}</p>
+                                        <span @class([
+                                            'px-2 py-1 text-xs rounded-md',
+                                            'bg-red-100 text-red-800' => $task->priority->name === 'HIGH',
+                                            'bg-yellow-100 text-yellow-800' => $task->priority->name === 'MEDIUM',
+                                            'bg-blue-100 text-blue-800' => $task->priority->name === 'LOW',
+                                        ])>
+                                            {{ $task->priority->label() }}
+                                        </span>
+                                    </div>
+                                    <p @class([
+                                        'date',
+                                        'text-red-600 font-medium' => $task->deadline < now(),
+                                        'text-gray-600' => $task->deadline >= now()
+                                    ])>
+                                        {{ $task->deadline->diffForHumans() }}
+                                        @if($task->deadline < now())
+                                            <span class="text-xs">(overdue)</span>
+                                        @endif
+                                    </p>
                                 </div>
 
                                 <div class="body">
@@ -42,7 +61,7 @@
                                     <div class="statuses mt-4 flex gap-6">
                                         @foreach(\App\Enums\TaskStatus::cases() as $status)
                                             <button type="button" wire:click="changeStatus({{ $task->id }}, '{{ $status->value }}')" class="border border-gray-300 text-sm rounded-md px-2 py-2 bg-white-400 disabled:opacity-25 transition ease-in-out duration-150" @disabled($status->value === $task->status->value)>
-                                                {{ Str::of($status->value)->headline() }}
+                                                {{ $status->label() }}
                                             </button>
                                         @endforeach
                                     </div>

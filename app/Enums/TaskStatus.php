@@ -15,7 +15,7 @@ enum TaskStatus: int
         return match ($this) {
             self::NOT_STARTED => 'Not Started',
             self::IN_PROGRESS => 'In Progress',
-            self::COMPLETE => 'Complelte',
+            self::COMPLETE => 'Complete',
         };
     }
 
