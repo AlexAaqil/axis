@@ -19,14 +19,16 @@ class UserSeeder extends Seeder
 
         $users = [
             [
-                "name" => "Admin Test",
+                "first_name" => "Admin",
+                "last_name" => "Test",
                 "email" => "admin@gmail.com",
                 "phone_number" => "254746055487",
                 "password"=> $admin_password,
                 "email_verified_at" => "2025-04-29 04:00:42",
             ],
             [
-                "name" => "User Test",
+                "first_name" => "User",
+                "last_name" => "Test",
                 "email" => "user@gmail.com",
                 "phone_number" => "254746055487",
                 "password"=> $user_password,
