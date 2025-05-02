@@ -4,36 +4,38 @@ namespace App\Enums;
 
 use Illuminate\Support\Collection;
 
-enum TaskStatus: string
+enum TaskStatus: int
 {
-    case STARTED = 'started';
-    case IN_PROGRESS = 'in_progress';
-    case DONE = 'done';
+    case NOT_STARTED = 0;
+    case IN_PROGRESS = 1;
+    case COMPLETE = 2;
 
     public function label(): string
     {
         return match ($this) {
-            self::STARTED => 'Started',
+            self::NOT_STARTED => 'Not Started',
             self::IN_PROGRESS => 'In Progress',
-            self::DONE => 'Done',
+            self::COMPLETE => 'Complelte',
         };
     }
 
-    public function color(): string
+    public function labels(): array
     {
-        return match ($this) {
-            self::STARTED => 'border-yellow-500',
-            self::IN_PROGRESS => 'border-blue-500',
-            self::DONE => 'border-green-500',
-        };
+        $results = [];
+
+        foreach (self::cases() as $case) {
+            $results[$case->value] = $case->label();
+        }
+        
+        return $results;
     }
 
     public static function ordered(): array
     {
         return [
-            self::STARTED,
+            self::NOT_STARTED,
             self::IN_PROGRESS,
-            self::DONE,
+            self::COMPLETE,
         ];
     }
 
