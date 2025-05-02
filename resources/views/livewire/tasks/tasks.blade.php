@@ -11,9 +11,9 @@
                                 <span 
                                     @class([
                                         "flex flex-col items-center justify-center text-center rounded-full h-16 w-16 py-4 px-4 text-lg text-gray-700 border-2",
-                                        'border-yellow-500' => $status->status->name === 'STARTED',
+                                        'border-yellow-500' => $status->status->name === 'NOT_STARTED',
                                         'border-blue-500' => $status->status->name === 'IN_PROGRESS',
-                                        'border-green-500' => $status->status->name === 'DONE'
+                                        'border-green-500' => $status->status->name === 'COMPLETE'
                                     ])
                                 >
                                         {{ $status->count }}
